@@ -82,8 +82,20 @@
                 const nomeEl = document.querySelector('.kids-link');
                 const imgEl = document.querySelector('.profile-icon');
 
-                if (perfil.name && nomeEl) nomeEl.textContent = perfil.name;
-                if (perfil.image && imgEl) imgEl.src = perfil.image;
+                if (perfil.name && nomeEl) {
+                    nomeEl.textContent = perfil.name;
+                }
+
+                if (perfil.image && imgEl) {
+                    let imagePath = perfil.image;
+
+                    // Se o caminho for relativo local (assets/*) na página catalogo/, devemos subir um nível
+                    if (!imagePath.startsWith('http://') && !imagePath.startsWith('https://') && !imagePath.startsWith('/') && !imagePath.startsWith('../')) {
+                        imagePath = `../${imagePath}`;
+                    }
+
+                    imgEl.src = imagePath;
+                }
             } catch (e) {
                 console.warn('Perfil ativo inválido no localStorage', e);
             }
