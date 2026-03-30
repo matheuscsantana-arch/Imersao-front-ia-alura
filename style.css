@@ -1,0 +1,307 @@
+/* Variáveis de tema */
+:root {
+    --bg: #000;
+    --text: #fff;
+    --button-bg: #222;
+    --button-text: #fff;
+    --button-border: #555;
+}
+
+body.light {
+    --bg: #f7f7f7;
+    --text: #1a1a1a;
+    --button-bg: #fff;
+    --button-text: #000;
+    --button-border: #ccc;
+}
+
+body.dark {
+    --bg: #000;
+    --text: #fff;
+    --button-bg: #222;
+    --button-text: #fff;
+    --button-border: #555;
+}
+
+/* Estilos do corpo da página */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Estilos do container principal */
+main {
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Toggle de tema */
+.theme-switcher {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.theme-switcher input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.theme-toggle {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    color: var(--button-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+    box-shadow: none;
+}
+
+.theme-toggle::before {
+    content: '☼';
+}
+
+.theme-toggle[data-theme='dark']::before {
+    content: '☾';
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+    transform: scale(1.1);
+    outline: none;
+    box-shadow: none;
+}
+
+.theme-toggle.active {
+    transform: scale(1.1);
+}
+
+/* Estilos do título */
+h1 {
+    font-size: 3rem; /* Aumenta o tamanho do título */
+    margin-bottom: 2rem; /* Espaço inferior */
+}
+
+/* Botão de alternância de tema removido */
+
+body.light .profile img:hover {
+    box-shadow: 0 0 20px #ff0000; /* sombra vermelha no modo light */
+}
+
+body.dark .profile img:hover {
+    box-shadow: 0 0 20px #9FFFFF; /* sombra fria no modo dark */
+}
+
+/* Estilos da lista de perfis */
+.profiles {
+    list-style: none; /* Remove os bullets da lista */
+    padding: 0;
+    display: flex; /* Posiciona os perfis em linha */
+    justify-content: center; /* Centraliza horizontalmente */
+    gap: 2rem; /* Espaço entre os perfis */
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+/* Estilos de cada perfil */
+.profile {
+    text-align: center; /* Centraliza o texto do perfil */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile a:hover,
+.profile a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
+.profile p {
+    margin-top: 1rem; /* Espaço superior */
+    font-size: 1.2rem; /* Aumenta um pouco o tamanho da fonte */
+    color: inherit;
+}
+
+/* Estilos das imagens dos perfis */
+.profile img {
+    width: 150px; /* Ajusta para tamanho fixo do círculo */
+    height: 150px; /* Ajusta para tamanho fixo do círculo */
+    border-radius: 100%; /* Garante borda circular na própria imagem */
+    object-fit: cover; /* Ajusta a imagem para não distorcer */
+    transition: transform 0.2s ease; /* Anima a transformação suavemente */
+    
+}
+
+/* Efeito ao passar o mouse sobre a imagem */
+.profile img:hover {
+    transform: scale(1.1); /* Aumenta o tamanho em 10% */
+    box-shadow: 0 0 20px #9FFFFF; /* Adiciona um brilho azul */
+}
+
+/* Estilos do nome do perfil */
+.profile p {
+    margin-top: 1rem; /* Espaço superior */
+    font-size: 1.2rem; /* Aumenta um pouco o tamanho da fonte */
+}
+
+/* Responsividade */
+/* 1. Mobile portrait (tela curta): duas colunas, centralização e espaçamento vertical ampliado */
+@media (max-width: 600px) and (max-height: 720px) {
+    body {
+        height: auto; /* Ajusta a altura ao conteúdo para evitar recorte */
+        padding: 2rem 1rem; /* Espaçamento interno nas laterais */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    main {
+        width: min(100%, 420px); /* Limita largura para centralização */
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2rem; /* Texto menor para caber no viewport */
+        margin-bottom: 1.2rem;
+        margin-top: 1rem; /* Adiciona espaço superior para melhor visualização em mobile */
+    }
+
+    .profiles {
+        display: grid; /* Usar grid para duas colunas */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: center;
+        gap: 2rem; /* Espaçamento entre cards de perfil */
+        padding: 0;
+        margin-top: 5rem; /* Desloca os ícones para baixo */
+    }
+
+    .profile img {
+        width: 110px; /* Imagem menor para dispositivos móveis */
+        height: 110px;
+    }
+
+    .profile p {
+        font-size: 1rem; /* Texto mais legível em mobile */
+    }
+}
+
+/* 2. Mobile landscape/alto: duas colunas e espaçamento vertical equilibrado */
+@media (max-width: 600px) and (max-height: 950px) {
+    body {
+        height: auto; /* Ajusta a altura ao conteúdo para evitar recorte */
+        padding: 2rem 1rem; /* Espaçamento interno nas laterais */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    main {
+        width: min(100%, 420px); /* Limita largura para centralização */
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2rem; /* Texto menor para caber no viewport */
+        margin-bottom: 1.2rem;
+        margin-top: 1rem; /* Adiciona espaço superior para melhor visualização em mobile */
+    }
+
+    .profiles {
+        display: grid; /* Usar grid para duas colunas */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: center;
+        gap: 2rem; /* Espaçamento entre cards de perfil */
+        padding: 0;
+        margin-top: 5rem; /* Desloca os ícones para baixo */
+    }
+
+    .profile img {
+        width: 110px; /* Imagem menor para dispositivos móveis */
+        height: 110px;
+    }
+
+    .profile p {
+        font-size: 1rem; /* Texto mais legível em mobile */
+    }
+}
+
+/* 3. Tablet / médio: configuração de grade dois por dois com centralização */
+@media (min-width: 601px) and (max-width: 1023px) {
+    body {
+        height: auto;
+        padding: 2rem 2rem;
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    main {
+        width: min(100%, 720px);
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .profiles {
+        display: grid; /* Grid 2 colunas no tablet */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem; /* Desloca os ícones para baixo */
+    }
+
+    .profile img {
+        width: 130px;
+        height: 130px;
+    }
+
+    .profile p {
+        font-size: 1.1rem;
+    }
+}
+
+/* 4. Desktop: estilo padrão ampliado, sem alteração de grade específica */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .profiles {
+        gap: 2.5rem;
+    }
+
+    .profile img {
+        width: 175px;
+        height: 175px;
+    }
+
+    .profile p {
+        font-size: 1.3rem;
+    }
+}

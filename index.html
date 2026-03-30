@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Quem está assistindo?</h1>
+        <div class="theme-switcher">
+            <input id="themeToggleCheckbox" type="checkbox" aria-label="Alternar modo claro/escuro" />
+            <label for="themeToggleCheckbox" class="theme-toggle" aria-label="Ativar modo escuro"></label>
+        </div>
+        <ul class="profiles">
+            
+            <li class="profile">
+                <a href="catalogo/catalogo.html" class="profile-link" data-profile-name="Goku" data-profile-image="/assets/Perfil_1.png" aria-label="Selecionar Goku">
+                    <img src="/assets/Perfil_1.png" alt="Goku">
+                    <p>Goku</p>
+                </a>
+            </li>
+
+            <li class="profile">
+                <a href="catalogo/catalogo.html" class="profile-link" data-profile-name="Caulifla" data-profile-image="/assets/Perfil_2.png" aria-label="Selecionar Caulifla">
+                    <img src="/assets/Perfil_2.png" alt="Caulifla">
+                    <p>Caulifla</p>
+                </a>
+            </li>
+
+            <li class="profile">
+                <a href="catalogo/catalogo.html" class="profile-link" data-profile-name="Vegeta" data-profile-image="/assets/Perfil_3.png" aria-label="Selecionar Vegeta">
+                    <img src="/assets/Perfil_3.png" alt="Vegeta">
+                    <p>Vegeta</p>
+                </a>
+            </li>
+
+            <li class="profile">
+                <a href="catalogo/catalogo.html" class="profile-link" data-profile-name="Android 18" data-profile-image="/assets/Perfil_4.png" aria-label="Selecionar Android 18">
+                    <img src="/assets/Perfil_4.png" alt="Android 18">
+                    <p>Android 18</p>
+                </a>
+            </li>
+
+        </ul>
+
+    </main>
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.profile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const perfil = {
+                    name: link.dataset.profileName || '',
+                    image: link.dataset.profileImage || ''
+                };
+                localStorage.setItem('netflixProfileActive', JSON.stringify(perfil));
+            });
+        });
+    </script>
+</body>
+</html>
